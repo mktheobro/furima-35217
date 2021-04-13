@@ -30,6 +30,7 @@
 | shipping_fee_status_id | integer    | null: false       |
 | prefecture_id          | integer    | null: false       |
 | scheduled_delivery_id  | integer    | null: false       |
+| price                  | integer    | null: false       |
 | user                   | references | foreign_key: true |
 
 
