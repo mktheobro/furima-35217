@@ -45,6 +45,7 @@
 | user   | references | foreign_key: true |
 | item   | references | foreign_key: true |
 
+
 ### Association
 
 - belongs_to :user
@@ -53,14 +54,15 @@
 
 ## shipping_addresses テーブル
 
-| Column          | Type    | Options     |
-| --------------- | ------- | ----------- |
-| postal_code_id  | integer | null: false |
-| prefecture_id   | integer | null: false |
-| city            | string  | null: false |
-| address         | string  | null: false |
-| building        | string  |             |
-| phone_number    | string  | null: false |
+| Column            | Type       | Options           |
+| ----------------- | ---------- | ----------------- |
+| postal_code_id    | string     | null: false       |
+| prefecture_id     | integer    | null: false       |
+| city              | string     | null: false       |
+| address           | string     | null: false       |
+| building          | string     |                   |
+| phone_number      | string     | null: false       |
+| record            | references | foreign_key: true |
 
 
 ### Association
