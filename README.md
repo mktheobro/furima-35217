@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| last_name       | string | null: false |
-| first_name      | string | null: false |
-| last_name_kana  | string | null: false |
-| first_name_kana | string | null: false |
-| birth_date      | data   | null: false |
+| Column          | Type   | Options                  |
+| --------------- | ------ | ------------------------ |
+| nickname        | string | null: false              |
+| email           | string | null: false ,unique: true|
+| password        | string | null: false              |
+| last_name       | string | null: false              |
+| first_name      | string | null: false              |
+| last_name_kana  | string | null: false              |
+| first_name_kana | string | null: false              |
+| birth_date      | data   | null: false              |
 
 
 ### Association
@@ -21,18 +21,15 @@
 
 ## items テーブル
 
-| Column              | Type       | Options     |
-| ------------------- | ---------- | ----------- |
-| image               |            |             |
-| name                | string     | null: false |
-| info                | text       | null: false |
-| category            | string     | null: false |
-| sales_status        | string     | null: false |
-| shipping_fee_status | string     | null: false |
-| prefecture          | string     | null: false |
-| prefecture          | string     | null: false |
-| user                | references |             |
-| record              | references |             |
+| Column                 | Type       | Options           |
+| ---------------------- | ---------- | ----------------- |
+| name                   | string     | null: false       |
+| info                   | text       | null: false       |
+| category_id            | integer    | null: false       |
+| sales_status_id        | integer    | null: false       |
+| shipping_fee_status_id | integer    | null: false       |
+| prefecture_id          | integer    | null: false       |
+| user                   | references | foreign_key: true |
 
 
 ### Association
@@ -40,7 +37,7 @@
 - belongs_to :user
 - has_one :record
 
-## comments テーブル
+## records テーブル
 
 | Column | Type       | Options |
 | ------ | ---------- | ------- |
@@ -55,14 +52,14 @@
 
 ## shipping_addresses テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| postal_code     | string | null: false |
-| prefecture      | string | null: false |
-| city            | string | null: false |
-| address         | string | null: false |
-| building        | string |             |
-| phone_number    | string | null: false |
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| postal_code_id  | integer | null: false |
+| prefecture      | integer | null: false |
+| city            | string  | null: false |
+| address         | string  | null: false |
+| building        | string  |             |
+| phone_number    | string  | null: false |
 
 
 ### Association
