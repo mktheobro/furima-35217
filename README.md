@@ -29,6 +29,7 @@
 | sales_status_id        | integer    | null: false       |
 | shipping_fee_status_id | integer    | null: false       |
 | prefecture_id          | integer    | null: false       |
+| scheduled_delivery_id  | integer    | null: false       |
 | user                   | references | foreign_key: true |
 
 
@@ -39,10 +40,10 @@
 
 ## records テーブル
 
-| Column | Type       | Options |
-| ------ | ---------- | ------- |
-| user   | references |         |
-| item   | references |         |
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
 ### Association
 
@@ -55,7 +56,7 @@
 | Column          | Type    | Options     |
 | --------------- | ------- | ----------- |
 | postal_code_id  | integer | null: false |
-| prefecture      | integer | null: false |
+| prefecture_id   | integer | null: false |
 | city            | string  | null: false |
 | address         | string  | null: false |
 | building        | string  |             |
