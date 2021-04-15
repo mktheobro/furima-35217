@@ -16,6 +16,6 @@ class User < ApplicationRecord
     end
     validates :birth_date
   end
-    validates :password, format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/, message: "Include both letters and numbers."}
+    validates :password, format:{with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i, message: "Include both letters and numbers."}
 
 end
