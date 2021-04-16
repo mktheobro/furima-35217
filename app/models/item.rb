@@ -25,11 +25,4 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :scheduled_delivery
 
-  # with_options numericality: { other_than: 1 } do
-  # validates :category_id
-  # validates :sales_status_id
-  # validates :shipping_fee_status_id
-  # validates :prefecture_id
-  # validates :scheduled_delivery_id
-  # end
 end
