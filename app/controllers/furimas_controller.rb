@@ -20,11 +20,9 @@ class FurimasController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.save
       redirect_to furima_path(@item.id)
@@ -46,7 +44,7 @@ class FurimasController < ApplicationController
   end
 
   def contributor_confirmation
-    item = Item.find(params[:id])
-    redirect_to root_path unless current_user.id == item.user_id
+    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 end
