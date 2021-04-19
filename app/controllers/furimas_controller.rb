@@ -2,9 +2,7 @@ class FurimasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    # @items = Item.all
-    @items = Item.includes(:user)
-    @items = @items.order("created_at DESC")
+    @items = Item.includes(:user).order("created_at DESC")
   end
 
   def new
