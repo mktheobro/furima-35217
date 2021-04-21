@@ -1,14 +1,13 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: :index
-  before_action :contributor_confirmation, only: :index
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :contributor_confirmation, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @record_address = RecordAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @record_address = RecordAddress.new(record_params)
     if @record_address.valid?
       pay_item
@@ -43,4 +42,9 @@ class OrdersController < ApplicationController
     redirect_to root_path 
     end
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end
