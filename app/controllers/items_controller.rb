@@ -1,4 +1,4 @@
-class FurimasController < ApplicationController
+class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
@@ -33,7 +33,7 @@ class FurimasController < ApplicationController
   def update
     @item.update(item_params)
     if @item.save
-      redirect_to furima_path(@item.id)
+      redirect_to item_path(@item.id)
     else
       render :edit
     end
