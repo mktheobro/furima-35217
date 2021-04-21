@@ -43,7 +43,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-
   private
 
   def item_params
@@ -53,6 +52,6 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     @item = Item.find(params[:id])
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path unless current_user.id == @item.user_id && @item.record.nil?
   end
 end
