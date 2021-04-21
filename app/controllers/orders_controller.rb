@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :contributor_confirmation, only: [:index, :create]
-  before_action :set_item, only: [:index, :create]
 
   def index
     @record_address = RecordAddress.new
@@ -14,7 +13,6 @@ class OrdersController < ApplicationController
       @record_address.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render :index
     end
   end
