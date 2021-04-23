@@ -49,6 +49,10 @@
           <td class="detail-value"><%= @item.sales_status.name %></td>
         </tr>
         <tr>
+          <th class="detail-item">タグ</th>
+          <td class="detail-value"><%= @item.tags.pluck(:tag_name) %></td>
+        </tr>
+        <tr>
           <th class="detail-item">配送料の負担</th>
           <td class="detail-value"><%= @item.shipping_fee_status.name %></td>
         </tr>
