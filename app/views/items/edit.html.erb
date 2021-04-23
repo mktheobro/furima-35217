@@ -57,6 +57,11 @@ app/assets/stylesheets/items/new.css %>
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:sales_status_id, SalesStatus.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <div class="weight-bold-text">
+          タグ
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :tag_name, class:"items-text", id:"item-tag-name", placeholder:"タグ", maxlength:"20" %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -140,7 +145,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', item_path(@item.id), class:"back-btn" %>
+      <%=link_to 'もどる', item_path(@post.id), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
