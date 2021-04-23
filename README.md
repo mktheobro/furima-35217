@@ -76,7 +76,7 @@
 
 | Column      | Type    | Options                  |
 | ----------- | ------- | ------------------------ |
-| name        | string  | null: false,unique: true |
+| tag_name    | string  | null: false,unique: true |
 
 
 ### Association
