@@ -12,7 +12,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = ItemsTag.new(item_params)
-    if @item.save
+    if @item.valid?
+      @item.save
       redirect_to root_path
     else
       render :new
@@ -47,7 +48,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:items_tag).permit(:name, :info, :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id,
-                                 :scheduled_delivery_id, :price, :image, :tag_name).merge(user_id: current_user.id)
+                                      :scheduled_delivery_id, :price, :image, :tag_name).merge(user_id: current_user.id)
   end
 
   def contributor_confirmation
