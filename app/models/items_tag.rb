@@ -6,7 +6,7 @@ class ItemsTag
   with_options presence: true do
     validates :name
     validates :info
-    validates :tag_name
+    validates :tag_name, format: { without: /、+/,message: "Can use only [,]" }
     with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :sales_status_id
