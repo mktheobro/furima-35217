@@ -1,0 +1,23 @@
+<%= render "shared/header" %> 
+<h1>
+  検索結果
+</h1>
+<%# 検索結果の個数で条件分岐 %>
+<% if @results.length !=0 %>
+  <% @results.each do |result| %>
+    <td>
+    <br>
+    <li>
+      <%= result.name %>
+      <%# <%= link_to result.name, item_path(item) %>
+      <%# <%= result.size %> 
+      <%# <%= result.status %> 
+      <%= "#{result.price}円" %>
+      <%# <%= result.category.name %>
+    </li>
+  <% end %>
+<% else %>
+  該当する商品はありません
+<% end %>
+<br>
+<%= link_to 'トップページへ戻る', root_path %>

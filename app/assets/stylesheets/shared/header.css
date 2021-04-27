@@ -71,6 +71,12 @@
   color: #333333;
 }
 
+.brand-list {
+  text-decoration: none;
+  color: #333333;
+  margin-right: 3vw;
+}
+
 .lists-right {
   display: flex;
   list-style: none;
