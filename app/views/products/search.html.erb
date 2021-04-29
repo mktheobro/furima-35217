@@ -2,22 +2,46 @@
 <h1>
   検索結果
 </h1>
-<%# 検索結果の個数で条件分岐 %>
-<% if @results.length !=0 %>
-  <% @results.each do |result| %>
+<% if @items.length !=0 %>
+  <% @items.each do |result| %>
     <td>
     <br>
     <li>
-      <%= result.name %>
-      <%# <%= link_to result.name, item_path(item) %>
-      <%# <%= result.size %> 
-      <%# <%= result.status %> 
-      <%= "#{result.price}円" %>
-      <%# <%= result.category.name %>
+      <%= link_to result.name, item_path(result) %>
+      <%= result.price %>
+      <%= result.category.name %>
+      <%= result.sales_status.name %>
+      <%= result.shipping_fee_status.name %>
+      <%= result.scheduled_delivery.name %>
+      <%= result.tags.pluck(:tag_name) %>
     </li>
   <% end %>
 <% else %>
   該当する商品はありません
 <% end %>
+<%# 検索結果の個数で条件分岐 %>
+<%# unless params[:q][:name_cont].empty? %>
+<%#= params[:q][:name_cont] %> 
+<%# end %>
 <br>
+<%# unless params[:q][:category_id_eq].empty? %>
+<%#= Category.find(params[:q][:category_id_eq]).name %>
+<%# end %>
+<br>
+<%# unless params[:q][:sales_status_id_eq].empty? %>
+<%#= SalesStatus.find(params[:q][:sales_status_id_eq]).name %>
+<%# end %>
+<br>
+<%# unless params[:q][:shipping_fee_status_id_eq].empty? %>
+<%#= ShippingFeeStatus.find(params[:q][:shipping_fee_status_id_eq]).name %>
+<%# end %>
+<br>
+<%# unless params[:q][:scheduled_delivery_id_eq].empty? %>
+<%#= ScheduledDelivery.find(params[:q][:scheduled_delivery_id_eq]).name %>
+<%# end %>
+<br>
+<%# unless params[:q][:tags_id_in].reject(&:blank?).empty? %>
+<%#= params[:q][:tags_id_in].reject(&:blank?).map{|tag_id| Tag.find(tag_id).tag_name}.join(', ') %>
+<%# end %>
+<br> 
 <%= link_to 'トップページへ戻る', root_path %>
