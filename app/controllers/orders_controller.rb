@@ -36,9 +36,6 @@ class OrdersController < ApplicationController
 
   def contributor_confirmation
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id || @item.record.present? 
-    redirect_to root_path 
-    end
+    redirect_to root_path if current_user.id == @item.user_id || @item.record.present?
   end
-
 end

@@ -7,12 +7,13 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = ItemsTag.new
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save
+    @item = ItemsTag.new(item_params)
+    if @item.valid?
+      @item.save
       redirect_to root_path
     else
       render :new
@@ -28,15 +29,20 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    load_post
+    @item = ItemsTag.new(item: @post)
   end
 
   def update
-    @item.update(item_params)
-    if @item.save
-      redirect_to item_path(@item.id)
+    load_post
+    @item = ItemsTag.new(item_params, item: @post)
+    if @item.valid?
+      @item.save
+      redirect_to item_path(@post.id)
     else
       render :edit
     end
+ 
   end
 
   def show
@@ -47,11 +53,16 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :info, :category_id, :sales_status_id, :shipping_fee_status_id, :prefecture_id,
-                                 :scheduled_delivery_id, :price, :image).merge(user_id: current_user.id)
+                                      :scheduled_delivery_id, :price, :image, :tag_name).merge(user_id: current_user.id)
   end
 
   def contributor_confirmation
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id && @item.record.nil?
   end
+
+  def load_post
+    @post = current_user.items.find(params[:id])
+  end
+
 end

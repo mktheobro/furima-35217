@@ -38,6 +38,7 @@
 
 - belongs_to :user
 - has_one :record
+- has_many :items, through: :item_tag_relations
 
 ## records テーブル
 
@@ -69,3 +70,29 @@
 ### Association
 
 - belong_to :record
+
+
+## tags テーブル
+
+| Column      | Type    | Options                  |
+| ----------- | ------- | ------------------------ |
+| tag_name    | string  | null: false,unique: true |
+
+
+### Association
+
+- has_many :item_tag_relations
+- has_many :items, through: :item_tag_relations
+
+## item_tag_relations テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| tag    | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :item
+- belongs_to :tag
