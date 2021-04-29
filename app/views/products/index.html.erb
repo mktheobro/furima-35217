@@ -1,52 +1,82 @@
 <%= render "shared/header" %> 
-<h1>
-  商品検索
-</h1>
-<%= search_form_for @p, url: products_search_path do |f| %>
-  <%= f.label :price, '価格：' %>
-  <%= f.radio_button :price_lteq, '' %>
-  指定なし
-  <%= f.radio_button :price_lteq, '1000' %>
-  1000円以下
-  <%= f.radio_button :price_lteq, '2500' %>
-  2500円以下
-  <%= f.radio_button :price_lteq, '5000' %>
-  5000円以下
-  <br>
-  <%= f.label :name_cont, '商品名' %>
-  <%= f.search_field :name_cont %>
-  <br>
-  <%= f.label :category_id_eq,'カテゴリー' %> 
-  <%= f.collection_select :category_id_eq, Category.find([2,3,4,5,6,7,8,9,10,11]), :id, :name, include_blank: '指定なし' %> 
-  <br>
-  <%= f.label :sales_status_id_eq,'商品の状態' %> 
-  <%= f.collection_select :sales_status_id_eq, SalesStatus.find([2,3,4,5,6,7]), :id, :name, include_blank: '指定なし' %> 
-  <br>
-  <%= f.label :shipping_fee_status_id_eq,'配送料の負担' %> 
-  <%= f.collection_select :shipping_fee_status_id_eq, ShippingFeeStatus.find([2,3]), :id, :name, include_blank: '指定なし' %> 
-  <br>
-  <%= f.label :scheduled_delivery_id_eq,'発送までの日数' %> 
-  <%= f.collection_select :scheduled_delivery_id_eq, ScheduledDelivery.find([2,3,4]), :id, :name, include_blank: '指定なし' %> 
-  <br>
-  <%#= f.label :tags_id_in,'タグ' %> 
-  <%#= f.collection_check_boxes :tags_id_in, @tags, :id, :tag_name %>
-  <%= f.label :tags_id_eq,'タグ' %> 
-  <%= f.collection_select :tags_id_eq, @tags, :id, :tag_name, include_blank: '指定なし' %> 
-  <br>
-  <%= f.submit '検索' %>
-  <br>
-  <%= "商品一覧" %>
-  <% @items.each do |item| %>
-  <td>
-  <br>
-  <li>
-    <%= link_to item.name, item_path(item) %>
-    <%= "#{item.price}円" %>
-    <%= item.category.name %>
-    <%= item.sales_status.name %>
-    <%= item.shipping_fee_status.name %>
-    <%= item.scheduled_delivery.name %>
-    <%= item.tags.pluck(:tag_name) %>
-  </li>
-  <% end %>
-<% end %>
+<div class="items-sell-contents">
+  <div class="items-search-main">
+    <h1 class="items-sell-title">商品検索</h1>
+    <%= search_form_for @p, url: products_search_path do |f| %>
+      <div class="new-items">
+        <div class="weight-bold-text">
+          <%= f.label :name_cont, '商品名' %>
+        </div>
+        <%= f.search_field :name_cont, class:"items-search-text", placeholder:"商品名に含まれている文字を検索"%>
+      </div>
+      <div class="weight-bold-text">
+        <%= f.label :price, '価格帯' %>
+      </div>
+      <%= f.radio_button :price_lteq, '' %>
+      指定なし
+      <%= f.radio_button :price_lteq, '1000' %>
+      1000円以下
+      <%= f.radio_button :price_lteq, '2500' %>
+      2500円以下
+      <%= f.radio_button :price_lteq, '5000' %>
+      5000円以下
+      <br>
+      <div class="items-search-form">
+        <div class="weight-bold-text">
+        <%= f.label :category_id_eq,'カテゴリー' %> 
+        </div>
+        <div class="search-select-box">
+        <%= f.collection_select :category_id_eq, Category.find([2,3,4,5,6,7,8,9,10,11]), :id, :name, include_blank: '指定なし' %> 
+        </div>
+      </div>
+      <div class="items-search-form">
+        <div class="weight-bold-text">
+        <%= f.label :sales_status_id_eq,'商品の状態' %>
+        </div> 
+        <div class="search-select-box">
+        <%= f.collection_select :sales_status_id_eq, SalesStatus.find([2,3,4,5,6,7]), :id, :name, include_blank: '指定なし' %> 
+        </div>
+      </div>
+      <div class="items-search-form">
+        <div class="weight-bold-text">
+        <%= f.label :shipping_fee_status_id_eq,'配送料の負担' %>
+        </div> 
+        <div class="search-select-box">
+        <%= f.collection_select :shipping_fee_status_id_eq, ShippingFeeStatus.find([2,3]), :id, :name, include_blank: '指定なし' %> 
+        </div>
+      </div>
+      <div class="items-search-form">
+        <div class="weight-bold-text">
+        <%= f.label :scheduled_delivery_id_eq,'発送までの日数' %>
+        </div> 
+        <div class="search-select-box">
+        <%= f.collection_select :scheduled_delivery_id_eq, ScheduledDelivery.find([2,3,4]), :id, :name, include_blank: '指定なし' %> 
+        </div>
+      </div>
+      <div class="items-search-form">
+        <div class="weight-bold-text">
+        <%= f.label :tags_id_eq,'タグ' %>
+        </div> 
+        <div class="search-select-box">
+        <%= f.collection_select :tags_id_eq, @tags, :id, :tag_name, include_blank: '指定なし' %> 
+        </div>
+      </div>
+      <%= f.submit '検索' %>
+      <br>
+      <%= "商品一覧" %>
+      <% @items.each do |item| %>
+      <td>
+      <br>
+      <li>
+        <%= link_to item.name, item_path(item) %>
+        <%= "#{item.price}円" %>
+        <%= item.category.name %>
+        <%= item.sales_status.name %>
+        <%= item.shipping_fee_status.name %>
+        <%= item.scheduled_delivery.name %>
+        <%= item.tags.pluck(:tag_name) %>
+      </li>
+      <% end %>
+    <% end %>
+  </div>
+</div>

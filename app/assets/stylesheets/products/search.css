@@ -1,0 +1,19 @@
+.search-item-img {
+  width: 25vh;
+  height: 25vh;
+}
+
+.items-search-contents {
+  font-family: "Source Sans Pro", Helvetica, Arial, "æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“", "YuGothic", "ãƒ¡ã‚¤ãƒªã‚ª", "Meiryo", sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 500px;
+}
+
+.search-list {
+  width: 30vh;
+  padding: 1vw;
+  background-color: #FFF;
+}
