@@ -59,7 +59,7 @@ app/assets/stylesheets/items/new.css %>
         <%= f.collection_select(:sales_status_id, SalesStatus.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
         <div class="weight-bold-text">
           タグ（複数登録する場合は<br>「,」で区切る「、」は不可
-          <span class="indispensable">必須</span>
+
         </div>
         <%= f.text_area :tag_name, class:"items-text", id:"item-tag-name", placeholder:"タグ", maxlength:"20" %>
       </div>

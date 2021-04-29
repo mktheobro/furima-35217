@@ -6,33 +6,36 @@
     <% @items.each do |result| %>
       <td>
       <br>
-        <li class='search-list'>
-          <%= link_to item_path(result) do %>
-          <div class='item-img-content'>
-            <%= image_tag result.image, class: "search-item-img" %>
-            <% if result.record.present? %>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
+        <% if result.record.present? %>
+        <% else %>
+          <li class='search-list'>
+            <%= link_to item_path(result) do %>
+            <div class='item-img-content'>
+              <%= image_tag result.image, class: "search-item-img" %>
+              <% if result.record.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+              <% end %>
+            </div>
+
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= result.name %>
+            </h3>
+              <div class='item-price'>
+                <span><%= result.price %>円<br>
+                <%= result.category.name %><br>
+                <%= result.sales_status.name %><br>
+                <%= result.scheduled_delivery.name %><br>
+                <%= result.shipping_fee_status.name %><br>
+                <%= result.tags.pluck(:tag_name) %>
+                </span>
+              </div>
             </div>
             <% end %>
-          </div>
-
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= result.name %>
-          </h3>
-          <div class='item-price'>
-            <span><%= result.price %>円<br>
-            <%= result.category.name %><br>
-            <%= result.sales_status.name %><br>
-            <%= result.scheduled_delivery.name %><br>
-            <%= result.shipping_fee_status.name %><br>
-            <%= result.tags.pluck(:tag_name) %>
-            </span>
-          </div>
-        </div>
+          </li>
         <% end %>
-      </li>
     <% end %>
   <% else %>
     該当する商品はありません

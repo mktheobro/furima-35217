@@ -1,5 +1,5 @@
 <%= render "shared/header" %> 
-<div class="items-sell-contents">
+<div class="items-search-contents">
   <div class="items-search-main">
     <h1 class="items-sell-title">商品検索</h1>
     <%= search_form_for @p, url: products_search_path do |f| %>
@@ -63,20 +63,7 @@
       </div>
       <%= f.submit '検索' %>
       <br>
-      <%= "商品一覧" %>
-      <% @items.each do |item| %>
-      <td>
-      <br>
-      <li>
-        <%= link_to item.name, item_path(item) %>
-        <%= "#{item.price}円" %>
-        <%= item.category.name %>
-        <%= item.sales_status.name %>
-        <%= item.shipping_fee_status.name %>
-        <%= item.scheduled_delivery.name %>
-        <%= item.tags.pluck(:tag_name) %>
-      </li>
-      <% end %>
+  
     <% end %>
   </div>
 </div>
